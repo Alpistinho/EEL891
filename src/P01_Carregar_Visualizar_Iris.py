@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #==============================================================================
 #  Carga e Visualizacao do Conjunto de Dados IRIS (problema de classificacao)
 #==============================================================================
@@ -7,7 +8,7 @@
 #------------------------------------------------------------------------------
 
 import pandas as pd
-dataframe = pd.read_excel('../data/D01_iris.xlsx')
+dataframe = pd.read_excel('../data/D01_Iris.xlsx')
 
 #------------------------------------------------------------------------------
 #  Separar em dataframes distintos os atributos e o alvo 
