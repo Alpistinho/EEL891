@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #==============================================================================
 #  Regressao Linear Simples
 #==============================================================================
@@ -26,10 +27,9 @@ from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(
         X, 
         y,
-        test_size = 1/3 #,
+        test_size = 1./3 #,
         #random_state = 20180904
 )
-
 #------------------------------------------------------------------------------
 #  Instanciar um regressor da classe LinearRegression
 #------------------------------------------------------------------------------
@@ -49,7 +49,8 @@ regressor.fit(X_train, y_train)
 #------------------------------------------------------------------------------
 
 y_pred_train = regressor.predict(X_train)
-y_pred_test  = regressor.predict(X_test )
+print(X_test)
+y_pred_test  = regressor.predict(X_test)
 
 #------------------------------------------------------------------------------
 #  Verificar desempenho do regressor
