@@ -1,5 +1,6 @@
+# -*- coding: utf-8 -*-
 #==============================================================================
-#  Tratamento de Dados Faltantes e de Atributos Categóricos
+#  Tratamento de Dados Faltantes e de Atributos Categï¿½ricos
 #==============================================================================
 
 #------------------------------------------------------------------------------
@@ -11,8 +12,8 @@ import pandas as pd
 dataset = pd.read_csv('../data/D03_Categorias_e_Dados_Faltantes.csv')
 
 #------------------------------------------------------------------------------
-#  Criar os arrays numéricos correspondentes aos atributos e ao alvo
-#  (dados vazios ou não-conversíveis para número são armazenados como 'NaN')
+#  Criar os arrays numï¿½ricos correspondentes aos atributos e ao alvo
+#  (dados vazios ou nï¿½o-conversï¿½veis para nï¿½mero sï¿½o armazenados como 'NaN')
 #------------------------------------------------------------------------------
 
 X = dataset.iloc[:, :-1].values
@@ -24,49 +25,49 @@ y = dataset.iloc[:, 3].values
 
 from sklearn.preprocessing import Imputer
 
-# instanciar um Imputer para substituir todas as ocorrências de 'NaN'
-# pelo valor médio (ou pela mediana, ou pelo valor mais frequente,
-# conforme parâmetro "strategy") da linha ou da coluna (conforme
-# parâmetro "axis")
+# instanciar um Imputer para substituir todas as ocorrï¿½ncias de 'NaN'
+# pelo valor mï¿½dio (ou pela mediana, ou pelo valor mais frequente,
+# conforme parï¿½metro "strategy") da linha ou da coluna (conforme
+# parï¿½metro "axis")
 
 imputer = Imputer(
         missing_values = 'NaN',  # lista de valores a serem substituidos
-        strategy = 'mean',       # pode ser também 'median' ou 'most_frequent'
+        strategy = 'mean',       # pode ser tambï¿½m 'median' ou 'most_frequent'
         axis = 0                 # 0 para coluna, 1 para linha
 )
 
-# o método "fit" ajusta os parâmetros internos do Imputer, 
-# conforme estratégia escolhida
+# o mï¿½todo "fit" ajusta os parï¿½metros internos do Imputer, 
+# conforme estratï¿½gia escolhida
  
 imputer = imputer.fit(X[:, 1:3])
 
-# o método transform preenche os dados faltantes com os valores 
-# determinados pela estratégia escolhida
+# o mï¿½todo transform preenche os dados faltantes com os valores 
+# determinados pela estratï¿½gia escolhida
 
-Xold = X.copy();
+Xold = X.copy()
 
 X[:, 1:3] = imputer.transform(X[:, 1:3])
 
 #------------------------------------------------------------------------------
-#  Codificar o atributo categórico da coluna 0 (paí­s)
+#  Codificar o atributo categï¿½rico da coluna 0 (paï¿½s)
 #------------------------------------------------------------------------------
 
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 
-# codifica os países da coluna 0 em rótulos numéricos 0, 1, 2, etc.
+# codifica os paï¿½ses da coluna 0 em rï¿½tulos numï¿½ricos 0, 1, 2, etc.
 
 labelencoder_X = LabelEncoder()
 X[:, 0] = labelencoder_X.fit_transform(X[:, 0])
 
-# Transforma a coluna 0 em um conjunto de colunas con conteúdo binário
+# Transforma a coluna 0 em um conjunto de colunas con conteï¿½do binï¿½rio
 # (uma coluna para cada valor distinto)
 
 onehotencoder = OneHotEncoder(categorical_features = [0])
-X = onehotencoder.fit_transform(X);
-X = X.toarray();
+X = onehotencoder.fit_transform(X)
+X = X.toarray()
 
 #------------------------------------------------------------------------------
-#  Codificar o alvo ('yes' ou 'no' - comprou ou não comprou)
+#  Codificar o alvo ('yes' ou 'no' - comprou ou nï¿½o comprou)
 #------------------------------------------------------------------------------
 
 labelencoder_y = LabelEncoder()
